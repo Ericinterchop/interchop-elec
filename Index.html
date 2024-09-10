@@ -21,9 +21,15 @@
           <a href="#payment">Paiement</a>
       </nav>
       <div class="search-bar">
-          <input type="text" placeholder="Rechercher des produits...">
-          <button>🔍</button>
-      </div>
+        <input type="text" id="search-input" placeholder="Rechercher des produits..." onkeyup="showResults()">
+        <button onclick="showResults()">🔍</button>
+    </div>
+    
+    <div class="results" id="results">
+        <p id="result-text"></p>
+        <ul id="result-list"></ul>
+    </div>
+    
       <div class="cart-icon" onclick="openModal()">🛒</div>
   </header>
 
@@ -33,122 +39,137 @@
       <a href="#">Écouteurs</a>
       <a href="#">Smartphones</a>
       <a href="#">Tablettes</a>
+      <a href="#">appareil electronique</a>
   </section>
 
   <section class="container" id="produits">
-      <div class="card">
-          <img src="./images/Montre connecté 1.jpg" alt="Montre Connectée 1" loading="lazy">
-          <h2>Montre Connectée 1</h2>
-          <p>Suivez votre santé et votre activité avec cette montre connectée avancée.</p>
-          <p class="price">Prix: 199,99 €</p>
-          <p class="stock">Stock: 50 unités</p>
-          <button class="button" onclick="addToCart('Montre Connectée 1', 199.99)">Ajouter au Panier</button>
-      </div>
-      <div class="card">
-          <img src="./images/Montre Connectée 2.jpg" alt="Montre Connectée 2" loading="lazy">
-          <h2>Montre Connectée 2</h2>
-          <p>Montre connectée avec GPS intégré et suivi de la fréquence cardiaque.</p>
-          <p class="price">Prix: 249,99 €</p>
-          <p class="stock">Stock: 30 unités</p>
-          <button class="button" onclick="addToCart('Montre Connectée 2', 249.99)">Ajouter au Panier</button>
-      </div>
-      <div class="card">
-          <img src="./images/Écouteurs Sans Fil.jpg" alt="Écouteurs Sans Fil" loading="lazy">
-          <h2>Écouteurs Sans Fil</h2>
-          <p>Écoutez votre musique avec une qualité sonore exceptionnelle sans fil.</p>
-          <p class="price">Prix: 89,99 €</p>
-          <p class="stock">Stock: 100 unités</p>
-          <button class="button" onclick="addToCart('Écouteurs Sans Fil', 89.99)">Ajouter au Panier</button>
-      </div>
-      <div class="card">
-          <img src="./images/Smartphone 1.jpg" alt="Smartphone 1" loading="lazy">
-          <h2>Smartphone 1</h2>
-          <p>Smartphone dernier cri avec un écran haute définition et une caméra performante.</p>
-          <p class="price">Prix: 699,99 €</p>
-          <p class="stock">Stock: 20 unités</p>
-          <button class="button" onclick="addToCart('Smartphone 1', 699.99)">Ajouter au Panier</button>
-      </div>
-      <div class="card">
-          <img src="./images/Tablette 1.jpg" alt="Tablette 1" loading="lazy">
-          <h2>Tablette 1</h2>
-          <p>Tablette légère et puissante, idéale pour le travail et le divertissement.</p>
-          <p class="price">Prix: 399,99 €</p>
-          <p class="stock">Stock: 15 unités</p>
-          <button class="button" onclick="addToCart('Tablette 1', 399.99)">Ajouter au Panier</button>
-      </div>
-      <div class="card" id="moreProducts" style="display: none;">
-          <img src="./images/Montre Connectée 3.jpg" alt="Montre Connectée 3" loading="lazy">
-          <h2>Montre Connectée 3</h2>
-          <p>Montre connectée élégante avec plusieurs fonctionnalités de suivi de santé.</p>
-          <p class="price">Prix: 159,99 €</p>
-          <p class="stock">Stock: 40 unités</p>
-          <button class="button" onclick="addToCart('Montre Connectée 3', 159.99)">Ajouter au Panier</button>
-      </div>
-      <div class="card" id="moreProducts" style="display: none;">
-          <img src="./images/Smartphone 2.jpg" alt="Smartphone 2" loading="lazy">
-          <h2>Smartphone 2</h2>
-          <p>Smartphone avec une caméra de haute qualité et une longue autonomie.</p>
-          <p class="price">Prix: 499,99 €</p>
-          <p class="stock">Stock: 25 unités</p>
-          <button class="button" onclick="addToCart('Smartphone 2', 499.99)">Ajouter au Panier</button>
-      </div>
-      <div class="card" id="moreProducts" style="display: none;">
-          <img src="./images/Tablette 2.jpg" alt="Tablette 2" loading="lazy">
-          <h2>Tablette 2</h2>
-          <p>Tablette avec un écran tactile haute résolution et un processeur puissant.</p>
-          <p class="price">Prix: 349,99 €</p>
-          <p class="stock">Stock: 10 unités</p>
-          <button class="button" onclick="addToCart('Tablette 2', 349.99)">Ajouter au Panier</button>
-      </div>
-      <div class="card" id="moreProducts" style="display: none;">
+    <div class="card">
+        <img src="./images/Montre connecté 1.jpg" alt="Montre Connectée 1" loading="lazy">
+        <h2>Montre Connectée 1</h2>
+        <p>Suivez votre santé et votre activité avec cette montre connectée avancée et accessoires intégrés.</p>
+        <p class="price">Prix : <span style="color: orange;">10 450 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>9 405 FCFA</strong></p>
+        <p class="stock">Stock : 11 unités</p>
+        <button class="button" onclick="addToCart('Montre Connectée 1', 9405)">Ajouter au Panier</button>
+    </div>
+    <div class="card">
+        <img src="./images/Montre Connectée 2.jpg" alt="Montre Connectée 2" loading="lazy">
+        <h2>Montre Connectée 2</h2>
+        <p>Montre connectée avec GPS intégré et suivi de la fréquence cardiaque.</p>
+        <p class="price">Prix : <span style="color: orange;">9 350 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>8 415 FCFA</strong></p>
+        <p class="stock">Stock : 8 unités</p>
+        <button class="button" onclick="addToCart('Montre Connectée 2', 8415)">Ajouter au Panier</button>
+    </div>
+    <div class="card">
+        <img src="./images/Écouteurs Sans Fil.jpg" alt="Écouteurs Sans Fil" loading="lazy">
+        <h2>Écouteurs Sans Fil</h2>
+        <p>Écoutez votre musique avec une qualité sonore exceptionnelle sans fil.</p>
+        <p class="price">Prix : <span style="color: orange;">6 050 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>5 445 FCFA</strong></p>
+        <p class="stock">Stock : 10 unités</p>
+        <button class="button" onclick="addToCart('Écouteurs Sans Fil', 5445)">Ajouter au Panier</button>
+    </div>
+    <div class="card">
+        <img src="./images/Smartphone 1.jpg" alt="Smartphone 1" loading="lazy">
+        <h2>Écouteurs Bluetooth</h2>
+        <p>Écoutez votre musique avec une qualité sonore exceptionnelle sans fil et optimale.</p>
+        <p class="price">Prix : <span style="color: orange;">10 450 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>9 405 FCFA</strong></p>
+        <p class="stock">Stock : 10 unités</p>
+        <button class="button" onclick="addToCart('Écouteurs Bluetooth', 9405)">Ajouter au Panier</button>
+    </div>
+    <div class="card">
+        <img src="./images/Tablette 1.jpg" alt="Tablette 1" loading="lazy">
+        <h2>Casques Bluetooth JBL</h2>
+        <p>Profitez d'un son immersif et d'une liberté de mouvement avec ce casque Bluetooth.</p>
+        <p class="price">Prix : <span style="color: orange;">7 150 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>6 795 FCFA</strong></p>
+        <p class="stock">Stock : 5 unités</p>
+        <button class="button" onclick="addToCart('Casques Bluetooth JBL', 6795)">Ajouter au Panier</button>
+    </div>
+    <div class="card" id="moreProducts" style="display: none;">
+        <img src="./images/Montre Connectée 3.jpg" alt="Montre Connectée 3" loading="lazy">
+        <h2>Casques Bluetooth</h2>
+        <p>Profitez d'un son immersif et d'une liberté de mouvement avec ce casque Bluetooth.</p>
+        <p class="price">Prix : <span style="color: orange;">6 600 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>5 940 FCFA</strong></p>
+        <p class="stock">Stock : 10 unités</p>
+        <button class="button" onclick="addToCart('Casques Bluetooth', 5940)">Ajouter au Panier</button>
+    </div>
+    <div class="card" id="moreProducts" style="display: none;">
+        <img src="./images/Smartphone 2.jpg" alt="Smartphone 2" loading="lazy">
+        <h2>Veilleuse LED</h2>
+        <p>Créez une ambiance apaisante avec cette veilleuse. Économique et douce, elle offre une lumière rassurante pour les nuits tranquilles.</p>
+        <p class="price">Prix : <span style="color: orange;">8 250 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>7 425 FCFA</strong></p>
+        <p class="stock">Stock : 5 unités</p>
+        <button class="button" onclick="addToCart('Veilleuse LED', 7425)">Ajouter au Panier</button>
+    </div>
+    <div class="card" id="moreProducts" style="display: none;">
+        <img src="./images/Tablette 2.jpg" alt="Tablette 2" loading="lazy">
+        <h2>Veilleuse</h2>
+        <p>Créez une ambiance apaisante avec cette veilleuse LED.</p>
+        <p class="price">Prix : <span style="color: orange;">8 250 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>7 425 FCFA</strong></p>
+        <p class="stock">Stock : 3 unités</p>
+        <button class="button" onclick="addToCart('Veilleuse', 7425)">Ajouter au Panier</button>
+    </div>
+    <div class="card" id="moreProducts" style="display: none;">
         <img src="./images/mini-bafle.jpg" alt="mini-bafle" loading="lazy">
-        <h2>mini-bafle</h2>
-        <p>Tablette avec un écran tactile haute résolution et un processeur puissant.</p>
-        <p class="price">Prix: 349,99 €</p>
-        <p class="stock">Stock: 10 unités</p>
-        <button class="button" onclick="addToCart('mini-bafle', 349.99)">Ajouter au Panier</button>
+        <h2>Mini-Bafle</h2>
+        <p>Profitez d'un son puissant et clair avec cette mini baffle JBL.</p>
+        <p class="price">Prix : <span style="color: orange;">16 500 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>14 850 FCFA</strong></p>
+        <p class="stock">Stock : 7 unités</p>
+        <button class="button" onclick="addToCart('Mini-Bafle', 14850)">Ajouter au Panier</button>
     </div>
     <div class="card" id="moreProducts" style="display: none;">
         <img src="./images/mini-bafle2.jpg" alt="mini-bafle2" loading="lazy">
-        <h2>mini-bafle2</h2>
-        <p>Tablette avec un écran tactile haute résolution et un processeur puissant.</p>
-        <p class="price">Prix: 349,99 €</p>
-        <p class="stock">Stock: 10 unités</p>
-        <button class="button" onclick="addToCart('mini-bafle2', 349.99)">Ajouter au Panier</button>
+        <h2>Mini-Bafle 2</h2>
+        <p>Profitez d'un son puissant et clair avec cette mini baffle JBL.</p>
+        <p class="price">Prix : <span style="color: orange;">10 450 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>9 405 FCFA</strong></p>
+        <p class="stock">Stock : 10 unités</p>
+        <button class="button" onclick="addToCart('Mini-Bafle 2', 9405)">Ajouter au Panier</button>
     </div>
     <div class="card" id="moreProducts" style="display: none;">
         <img src="./images/mini-camera-espion.jpg" alt="mini-camera-espion" loading="lazy">
-        <h2>mini-camera-espion</h2>
-        <p>Tablette avec un écran tactile haute résolution et un processeur puissant.</p>
-        <p class="price">Prix: 349,99 €</p>
-        <p class="stock">Stock: 10 unités</p>
-        <button class="button" onclick="addToCart('mini-camera-espion', 349.99)">Ajouter au Panier</button>
+        <h2>Mini-Caméra Espion</h2>
+        <p>Compacte et discrète, cette caméra offre une qualité d'image HD, vision nocturne et détection de mouvement avec wifi.</p>
+        <p class="price">Prix : <span style="color: orange;">12 650 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>11 385 FCFA</strong></p>
+        <p class="stock">Stock : 5 unités</p>
+        <button class="button" onclick="addToCart('Mini-Caméra Espion', 11385)">Ajouter au Panier</button>
     </div>
     <div class="card" id="moreProducts" style="display: none;">
         <img src="./images/camera-espion-.webp" alt="camera-espion-" loading="lazy">
-        <h2>camera-espion</h2>
-        <p>Tablette avec un écran tactile haute résolution et un processeur puissant.</p>
-        <p class="price">Prix: 349,99 €</p>
-        <p class="stock">Stock: 10 unités</p>
-        <button class="button" onclick="addToCart('camera-espion-', 349.99)">Ajouter au Panier</button>
+        <h2>Camera Espion</h2>
+        <p>Compacte et discrète, cette caméra offre une qualité d'image HD, vision nocturne et détection de mouvement.</p>
+        <p class="price">Prix : <span style="color: orange;">6 050 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>5 445 FCFA</strong></p>
+        <p class="stock">Stock : 4 unités</p>
+        <button class="button" onclick="addToCart('Camera Espion', 5445)">Ajouter au Panier</button>
     </div>
     <div class="card" id="moreProducts" style="display: none;">
         <img src="./images/diffuseur.jpg" alt="diffuseur" loading="lazy">
-        <h2>diffuseur</h2>
-        <p>Tablette avec un écran tactile haute résolution et un processeur puissant.</p>
-        <p class="price">Prix: 39,99 €</p>
-        <p class="stock">Stock: 11 unités</p>
-        <button class="button" onclick="addToCart('diffuseur', 39.99)">Ajouter au Panier</button>
+        <h2>Diffuseur</h2>
+        <p>Créez une ambiance apaisante avec ce diffuseur d'arôme ultrasonique.</p>
+        <p class="price">Prix : <span style="color: orange;">4 950 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>4 455 FCFA</strong></p>
+        <p class="stock">Stock : 3 unités</p>
+        <button class="button" onclick="addToCart('Diffuseur', 4455)">Ajouter au Panier</button>
     </div>
     <div class="card" id="moreProducts" style="display: none;">
         <img src="./images/diffuseur 2.jpg" alt="diffuseur 2" loading="lazy">
-        <h2>diffuseur d'arome</h2>
-        <p>Tablette avec un écran tactile haute résolution et un processeur puissant.</p>
-        <p class="price">Prix: 49,99 €</p>
-        <p class="stock">Stock: 15 unités</p>
-        <button class="button" onclick="addToCart('diffuseur 2', 49.99)">Ajouter au Panier</button>
+        <h2>Diffuseur d'Arome</h2>
+        <p>Créez une ambiance apaisante avec ce diffuseur d'arôme ultrasonique.</p>
+        <p class="price">Prix : <span style="color: orange;">4 950 FCFA</span></p>
+        <p class="price" style="color: red;">Prix avec Réduction : <strong>4 455 FCFA</strong></p>
+        <p class="stock">Stock : 3 unités</p>
+        <button class="button" onclick="addToCart('Diffuseur d\'Arome', 4455)">Ajouter au Panier</button>
     </div>
-  </section>
+</section>
 
   <button class="button" id="seeMoreBtn" onclick="seeMore()">Voir plus</button>
 
@@ -217,22 +238,13 @@
           <button class="button" onclick="redirectToWhatsApp()">Acheter</button>
       </div>
   </div>
-
   <script>
-      let cart = [];
-
-      function addToCart(itemName, itemPrice) {
-          cart.push({ name: itemName, price: itemPrice });
-          updateCartDisplay();
-          openModal();
-      }
-
-      function updateCartDisplay() {
+     function updateCartDisplay() {
           const cartItemsDiv = document.getElementById("cartItems");
           cartItemsDiv.innerHTML = "";
           cart.forEach(item => {
               const itemDiv = document.createElement("div");
-              itemDiv.innerHTML = `<p>${item.name} - Prix: ${item.price.toFixed(2)} €</p>`;
+              itemDiv.innerHTML = `<p>${item.name} - Prix: ${item.price.toFixed(2)} FCFA</p>`;
               cartItemsDiv.appendChild(itemDiv);
           });
           if (cart.length === 0) {
@@ -240,29 +252,84 @@
           }
       }
 
-      function redirectToWhatsApp() {
-          const message = encodeURIComponent("Je souhaite acheter : " + cart.map(item => item.name).join(", ") + ".");
-          const phoneNumber = "237655131755"; // Remplacez par votre numéro WhatsApp
-          window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-          cart = []; // Réinitialise le panier après redirection
-          closeModal();
-      }
+let cart = [];
 
-      function seeMore() {
-          const moreProducts = document.querySelectorAll("#moreProducts");
-          moreProducts.forEach(product => {
-              product.style.display = "block";
-          });
-          document.getElementById("seeMoreBtn").style.display = "none"; // Cache le bouton "Voir plus"
-      }
+function addToCart(itemName, itemPrice) {
+    cart.push({ name: itemName, price: itemPrice });
+    updateCartDisplay();
+    openModal();
+}
+    function redirectToWhatsApp() {
+        const message = encodeURIComponent("Je souhaite acheter : " + cart.map(item => item.name).join(", ") + ".");
+        const phoneNumber = "237655131755"; // Remplacez par votre numéro WhatsApp
+        window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+        cart = []; // Réinitialise le panier après redirection
+        closeModal();
+    }
 
-      function openModal() {
-          document.getElementById("myModal").style.display = "block";
-      }
+    function seeMore() {
+        const moreProducts = document.querySelectorAll("#moreProducts");
+        moreProducts.forEach(product => {
+            product.style.display = "block";
+        });
+        document.getElementById("seeMoreBtn").style.display = "none"; // Cache le bouton "Voir plus"
+    }
 
-      function closeModal() {
-          document.getElementById("myModal").style.display = "none";
-      }
-  </script>
+    function openModal() {
+        document.getElementById("myModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+</script>
+<script>
+    const products = [
+    { name: "Montre Connectée 1", img: "./images/Montre connecté 1.jpg" },
+    { name: "Montre Connectée 2", img: "./images/Montre Connectée 2.jpg" },
+    { name: "Écouteurs Sans Fil", img: "./images/Écouteurs Sans Fil.jpg" },
+    { name: "Ecouteurs Bluetooth", img: "./images/Smartphone 1.jpg" },
+    { name: "Casques Bluetooth JBL", img: "./images/Tablette 1.jpg" },
+    { name: "Casques Bluetooth", img: "./images/Montre Connectée 3.jpg" },
+    { name: "Veilleuse LED", img: "./images/Smartphone 2.jpg" },
+    { name: "Veilleuse", img: "./images/Tablette 2.jpg" },
+    { name: "Mini Bafle", img: "./images/mini-bafle.jpg" },
+    { name: "Mini Bafle 2", img: "./images/mini-bafle2.jpg" },
+    { name: "Mini Caméra Espion", img: "./images/mini-camera-espion.jpg" },
+    { name: "Camera Espion", img: "./images/camera-espion-.webp" },
+    { name: "Diffuseur", img: "./images/diffuseur.jpg" },
+    { name: "Diffuseur d'Arôme", img: "./images/diffuseur 2.jpg" },
+        
+    ];
+
+    function showResults() {
+        const input = document.getElementById('search-input').value.toLowerCase();
+        const resultsDiv = document.getElementById('results');
+        const resultText = document.getElementById('result-text');
+        const resultList = document.getElementById('result-list');
+
+        resultList.innerHTML = ''; // Réinitialiser la liste des résultats
+
+        if (input) {
+        const filteredProducts = products.filter(product => product.name.toLowerCase().includes(input));
+        if (filteredProducts.length > 0) {
+            resultText.textContent = `Résultats pour "${input}":`;
+            filteredProducts.forEach(product => {
+                const div = document.createElement('div');
+                div.className = 'result-item';
+                div.innerHTML = `<img src="${product.img}" alt="${product.name}"><span>${product.name}</span>`;
+                resultList.appendChild(div);
+            });
+            resultsDiv.style.display = 'block';
+        } else {
+            resultText.textContent = `Aucun résultat pour "${input}".`;
+            resultsDiv.style.display = 'block';
+        }
+    } else {
+        resultsDiv.style.display = 'none';
+    }
+}
+</script>
+
 </body>
 </html>
